@@ -31,7 +31,7 @@ import org.jetbrains.annotations.Nullable;
 public final class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.setContentView(1300052);
+        this.setContentView(R.layout.activity_main);
 
         if (!Python.isStarted()) {
             Python.start((Platform)(new AndroidPlatform((Context)this)));
@@ -45,26 +45,40 @@ public final class MainActivity extends AppCompatActivity {
         Intrinsics.checkNotNullExpressionValue(var4, "py.getModule(\"plot\")");
         final PyObject module = var4;
         
-        ((Button)this.findViewById(1000129)).setOnClickListener((OnClickListener)(new OnClickListener() {
+        ((Button)this.findViewById(R.id.button)).setOnClickListener((OnClickListener)(new OnClickListener() {
             public final void onClick(View it) {
                 try {
                     PyObject var10000 = module;
                     Object[] var10002 = new Object[2];
-                    View var10005 = MainActivity.this.findViewById(1000235);
+
+
+
+                    View var10005 = MainActivity.this.findViewById(R.id.etX);
                     Intrinsics.checkNotNullExpressionValue(var10005, "findViewById<EditText>(R.id.etX)");
                     var10002[0] = ((EditText)var10005).getText().toString();
-                    var10005 = MainActivity.this.findViewById(1000238);
+
+
+
+
+                    var10005 = MainActivity.this.findViewById(R.id.etY);
                     Intrinsics.checkNotNullExpressionValue(var10005, "findViewById<EditText>(R.id.etY)");
                     var10002[1] = ((EditText)var10005).getText().toString();
+
+
                     Object var8 = var10000.callAttr("plot", var10002).toJava(byte[].class);
                     Intrinsics.checkNotNullExpressionValue(var8, "module.callAttr(\"plot\",\n…va(ByteArray::class.java)");
+
                     byte[] bytes = (byte[])var8;
                     Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                    ((ImageView)MainActivity.this.findViewById(1000171)).setImageBitmap(bitmap);
+                    ((ImageView) MainActivity.this.findViewById(R.id.imageView)).setImageBitmap(bitmap);
                     View var9 = MainActivity.this.getCurrentFocus();
+
+
+
                     if (var9 != null) {
                         View var4 = var9;
-                        int var6 = false;
+                        //int var6 = false;
+
                         var8 = MainActivity.this.getSystemService("input_method");
                         if (var8 == null) {
                             throw new NullPointerException("null cannot be cast to non-null type android.view.inputmethod.InputMethodManager");
@@ -75,7 +89,7 @@ public final class MainActivity extends AppCompatActivity {
                         var10.hideSoftInputFromWindow(var4.getWindowToken(), 0);
                     }
                 } catch (PyException var7) {
-                    Toast.makeText((Context)MainActivity.this, (CharSequence)var7.getMessage(), 1).show();
+                    Toast.makeText((Context) MainActivity.this, (CharSequence)var7.getMessage(), 1).show();
                 }
 
             }

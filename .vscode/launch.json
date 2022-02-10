@@ -14,6 +14,12 @@
         },
         {
             "type": "android",
+            "request": "launch",
+            "name": "App Build & Launch",
+            "preLaunchTask": "run gradle",
+        },
+        {
+            "type": "android",
             "request": "attach",
             "name": "Android attach",
             "appSrcRoot": "${workspaceRoot}/app/src/main",
